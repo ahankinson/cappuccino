@@ -52,6 +52,8 @@
 @global CPTabTextMovement
 @global CPOtherTextMovement
 
+@typedef CPTextAlignment
+
 CPLeftTextAlignment      = 0;
 CPRightTextAlignment     = 1;
 CPCenterTextAlignment    = 2;

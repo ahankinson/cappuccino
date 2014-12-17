@@ -58,6 +58,7 @@ _MidRange = function(a1)
 /*
     CPSelectionGranularity
 */
+@typedef CPSelectionGranularity
 CPSelectByCharacter = 0;
 CPSelectByWord      = 1;
 CPSelectByParagraph = 2;
@@ -110,7 +111,8 @@ var kDelegateRespondsTo_textShouldBeginEditing                                  
 
     BOOL                        _scrollingDownward;
 
-    var                         _caretDOM;
+    DOMElement                  _DOMElement;
+    DOMElement                  _caretDOM;
     int                         _stickyXLocation;
 
     CPArray                     _selectionSpans;
@@ -528,7 +530,7 @@ var kDelegateRespondsTo_textShouldBeginEditing                                  
         style.whiteSpace = "pre";
         style.backgroundColor = "black";
         _caretDOM.style.width = "1px";
-        self._DOMElement.appendChild(_caretDOM);
+        _DOMElement.appendChild(_caretDOM);
     }
 
     _caretDOM.style.left = (aRect.origin.x) + "px";
