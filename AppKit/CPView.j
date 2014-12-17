@@ -234,6 +234,9 @@ var CPViewFlags                     = { },
     BOOL                _toolTipInstalled;
 
     BOOL                _isObserving;
+
+    id                  _animator;
+    CPDictionary        _animationsDictionary;
 }
 
 /*
@@ -362,6 +365,9 @@ var CPViewFlags                     = { },
         _DOMImageParts = [];
         _DOMImageSizes = [];
 #endif
+
+        _animator = nil;
+        _animationsDictionary = [CPDictionary dictionary];
 
         [self _setupToolTipHandlers];
         [self _setupViewFlags];
