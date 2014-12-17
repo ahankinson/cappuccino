@@ -28,13 +28,15 @@
 
 @import "CPCompatibility.j"
 @import "CGGeometry.j"
-@import "CPText.j"
 
 @class CPTextField
 @class CPWindow
 @class CPGraphicsContext
 
 @global CPApp
+@global CPNewlineCharacter
+@global CPCarriageReturnCharacter
+@global CPEnterCharacter
 
 @typedef DOMEvent
 @typedef CPEventType
