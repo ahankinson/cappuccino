@@ -6,9 +6,20 @@
 
 var _supportsCSSAnimations = null;
 
+@protocol CPAnimatablePropertyContainer <CPObject>
+
++ (id)defaultAnimationForKey:(CPString)key;
+- (id)animationForKey:(CPString)key;
+
+- (id)animator;
+- (CPDictionary)animations;
+- (void)setAnimations:(CPDictionary)animations;
+
+@end
+
 @implementation _CPObjectAnimator : CPProxy
 {
-    id /*CPAnimatablePropertyContainer*/ _target;
+    id <CPAnimatablePropertyContainer> _target;
 }
 
 + (BOOL)supportsCSSAnimations
@@ -36,7 +47,7 @@ var _supportsCSSAnimations = null;
    return [_target isEqual:anObject];
 }
 
-- (id)methodSignatureForSelector:(SEL)aSelector
+- (CPMethodSignature)methodSignatureForSelector:(SEL)aSelector
 {
     return [_target methodSignatureForSelector:aSelector];
 }
@@ -46,7 +57,7 @@ var _supportsCSSAnimations = null;
     return _target;
 }
 
-- (void)forwardInvocation:(id)anInvocation
+- (void)forwardInvocation:(CPInvocation)anInvocation
 {
     [anInvocation setTarget:_target];
     [anInvocation invoke];
