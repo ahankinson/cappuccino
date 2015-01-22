@@ -66,15 +66,17 @@ CPGradientDrawsAfterEndingLocation      = kCGGradientDrawsAfterEndLocation;
     return [self initWithColors:someColors atLocations:locations colorSpace:nil];
 }
 
-- (id)initWithColors:(CPArray)someColors atLocations:(CPArray)someLocations colorSpace:(CPColorSpace)aColorSpace
+- (id)initWithColors:(CPArray)someColors atLocations:(CPArray)someLocations colorSpace:(CGColorSpace)aColorSpace
 {
     if (self = [super init])
     {
         var cgColors = [],
             count = [someColors count],
             colorSpace = [aColorSpace CGColorSpace] || CGColorSpaceCreateDeviceRGB;
+
         for (var i = 0; i < count; i++)
             cgColors.push(CGColorCreate(colorSpace, [someColors[i] components]));
+
         _gradient = CGGradientCreateWithColors(colorSpace, cgColors, someLocations);
     }
 
@@ -100,12 +102,10 @@ CPGradientDrawsAfterEndingLocation      = kCGGradientDrawsAfterEndLocation;
 - (void)_drawInRect:(CGRect)rect atAngle:(float)angle
 {
     var ctx = [[CPGraphicsContext currentContext] graphicsPort],
-
         startPoint,
         endPoint;
-
-    // Modulo of negative values doesn't work as expected in JS.
-    angle = ((angle % 360.0) + 360.0) % 360.0;
+        // Modulo of negative values doesn't work as expected in JS.
+        angle = ((angle % 360.0) + 360.0) % 360.0;
 
     if (angle < 90.0)
         startPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
@@ -156,7 +156,7 @@ CPGradientDrawsAfterEndingLocation      = kCGGradientDrawsAfterEndLocation;
     [CPGraphicsContext restoreGraphicsState];
 }
 
-- (void)drawFromPoint:(NSPoint)startingPoint toPoint:(NSPoint)endingPoint options:(NSGradientDrawingOptions)options
+- (void)drawFromPoint:(CGPoint)startingPoint toPoint:(CGPoint)endingPoint options:(id)options
 {
     var ctx = [[CPGraphicsContext currentContext] graphicsPort];
 
