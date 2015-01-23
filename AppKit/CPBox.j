@@ -327,7 +327,7 @@ CPBelowBottom = 6;
 
 - (void)setTitle:(CPString)aTitle
 {
-    if (aTitle == _title)
+    if (aTitle === _title)
         return;
 
     _title = aTitle;
@@ -335,12 +335,12 @@ CPBelowBottom = 6;
     [self _manageTitlePositioning];
 }
 
-- (void)setTitlePosition:(int)aTitlePotisition
+- (void)setTitlePosition:(int)aTitlePosition
 {
-    if (aTitlePotisition == _titlePosition)
+    if (aTitlePosition === _titlePosition)
         return;
 
-    _titlePosition = aTitlePotisition;
+    _titlePosition = aTitlePosition;
 
     [self _manageTitlePositioning];
 }
@@ -367,7 +367,7 @@ CPBelowBottom = 6;
 
 - (void)_manageTitlePositioning
 {
-    if (_titlePosition == CPNoTitle)
+    if (_titlePosition === CPNoTitle)
     {
         [_titleView removeFromSuperview];
         [self setNeedsDisplay:YES];
@@ -414,7 +414,7 @@ CPBelowBottom = 6;
 
 - (float)_titleHeightOffset
 {
-    if (_titlePosition == CPNoTitle)
+    if (_titlePosition === CPNoTitle)
         return [0.0, 0.0];
 
     switch (_titlePosition)
@@ -455,12 +455,12 @@ CPBelowBottom = 6;
             break;
     }
 
-    if (_titlePosition == CPAtTop)
+    if (_titlePosition === CPAtTop)
     {
         bounds.origin.y += [_titleView frameSize].height;
         bounds.size.height -= [_titleView frameSize].height;
     }
-    if (_titlePosition == CPAtBottom)
+    if (_titlePosition === CPAtBottom)
     {
         bounds.size.height -= [_titleView frameSize].height;
     }
